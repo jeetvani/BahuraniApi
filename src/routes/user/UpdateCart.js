@@ -281,7 +281,7 @@ const deleteFromCartQuery = router.post("/deleteFromCart", (req, res) => {
     const deleteFromCartQuery = `UPDATE Cart SET Cart_Data = JSON_REMOVE(Cart_Data, '$[${index}]') WHERE User_Id = '${userId}'`;
     connection.query(deleteFromCartQuery, (err, result) => {
       if (err) {
-        logger.error(err.sqlMessage);
+        logger.error(err.sqlMessage); 
         res.status(400).send(err.sqlMessage);
       } else {
         logger.info(`Product Deleted From Cart`);
