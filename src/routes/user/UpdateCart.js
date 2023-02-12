@@ -226,7 +226,7 @@ const getCartData = router.post("/getCartData", (req, res) => {
       const cartData = JSON.parse(result[0].Cart_Data);
       cartData.forEach((e) => {
         e.Product_Variants = JSON.parse(e.Product_Variants);
-        delete e.Product_Description
+        delete e.Product_Description;
       });
 
       //send user how much he has to pay
@@ -285,7 +285,7 @@ const deleteFromCartQuery = router.post("/deleteFromCart", (req, res) => {
         res.status(400).send(err.sqlMessage);
       } else {
         logger.info(`Product Deleted From Cart`);
-        res.send({ status: 200, message: `Product Deleted From Cart` });
+        res.send({ status: 200, message: `Product Removed From Cart` });
       }
     });
   });
