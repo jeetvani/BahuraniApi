@@ -11,9 +11,9 @@ const getUserAddress = router.post("/getAddress", (req, res) => {
   const sql = `SELECT * FROM fgfgUser_Addresses WHERE User_Id = '${UserId}'`;
   connection.query(sql, (err, result) => {
     if (err) {
-      logger.error(err);
-      res.send(err);
-      res.status(500).json({ error: "Internal Server Error" });
+      throw err;
+     
+    
     } else {
       logger.info("Address Fetched Successfully");
       logger.info(result);
