@@ -8,12 +8,12 @@ const RazorPayInstance = require("../../config/razorPayConfig");
 const getUserAddress = router.post("/getAddress", (req, res) => {
   const { UserId } = req.body;
   logger.info(`Fetching address for   `, UserId);
-  const sql = `SELECT * FROM fgfgUser_Addresses WHERE User_Id = '${UserId}'`;
+  const sql = `SELECT * FROM User_Addresses WHERE User_Id = '${UserId}'`;
   connection.query(sql, (err, result) => {
     if (err) {
-      throw err;
-     
-    
+      logger.error(err);
+      res.send(err);
+      res.status(500).json({ error: "Internal Server Error" });
     } else {
       logger.info("Address Fetched Successfully");
       logger.info(result);
